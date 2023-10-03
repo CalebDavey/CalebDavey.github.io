@@ -1,12 +1,12 @@
 {
+  "homepage": "http://calebdavey.me",
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://calebdavey.github.io/portfolio/",
   "scripts": {
     "dev": "next dev",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -b main -d build",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
