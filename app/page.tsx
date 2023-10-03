@@ -42,7 +42,7 @@ export default function Home() {
               <div className="text-8xl font-light flex m-3">
                 <h1 className="uppercase font-light">Hey</h1>
                 <h1 className="blink">.</h1><h1>&nbsp;</h1>
-                <h1 className="uppercase font-light">I'm Caleb</h1>
+                <h1 className="uppercase font-light">{"I'm Caleb"}</h1>
               </div>
             </div>
             <div className="snap-center h-screen w-screen overflow-hidden select-none flex justify-center items-center flex-col">
