@@ -222,7 +222,7 @@ const tree = {
         '',
         {
         children: ['__PAGE__', {}, {
-          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2838)), "C:\\Users\\caleb\\Desktop\\reactPortfolio\\portfolio\\app\\page.tsx"],
+          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5417)), "C:\\Users\\caleb\\Desktop\\reactPortfolio\\portfolio\\app\\page.tsx"],
           
         }]
       },
@@ -272,22 +272,241 @@ const routeModule = new AppPageRouteModule({
 
 /***/ }),
 
-/***/ 6899:
+/***/ 2988:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 1232, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 2987, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 831, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 6926, 23));
 Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 4282, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 6505, 23));
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 1232, 23))
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 6505, 23))
 
 /***/ }),
 
-/***/ 8063:
+/***/ 6424:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 954, 23))
+Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 954, 23));
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 839))
+
+/***/ }),
+
+/***/ 839:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ Landing)
+});
+
+// EXTERNAL MODULE: external "next/dist/compiled/react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(6786);
+// EXTERNAL MODULE: external "next/dist/compiled/react"
+var react_ = __webpack_require__(8038);
+// EXTERNAL MODULE: ./node_modules/next/dist/client/components/noop-head.js
+var noop_head = __webpack_require__(9081);
+var noop_head_default = /*#__PURE__*/__webpack_require__.n(noop_head);
+// EXTERNAL MODULE: ./app/styles/indicator.css
+var indicator = __webpack_require__(3982);
+;// CONCATENATED MODULE: ./app/components/scrollIndicator.tsx
+
+
+
+function Scrollbar() {
+    let scalingElement;
+    (0,react_.useEffect)(()=>{
+        scalingElement = document.getElementById("selected");
+        setInterval(toggleScale, 2000);
+    }, []);
+    let isFullSize = true;
+    function toggleScale() {
+        console.log(scalingElement);
+        if (isFullSize && scalingElement) {
+            scalingElement.style.transform = "scale(0.6)";
+        } else if (scalingElement) {
+            scalingElement.style.transform = "scale(1)";
+        }
+        isFullSize = !isFullSize;
+    }
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        className: "fixed inset-y-1/2 right-6 -translate-y-1/2 h-fit flex justify-center items-center flex-col",
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                id: "selected",
+                className: "w-6 h-6 my-2 bg-neutral-50 rounded-full indicator"
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                className: "w-6 h-6 my-2 bg-neutral-50 rounded-full indicator"
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                className: "w-6 h-6 my-2 bg-neutral-50 rounded-full indicator"
+            })
+        ]
+    });
+}
+
+// EXTERNAL MODULE: ./app/styles/background.css
+var background = __webpack_require__(9912);
+;// CONCATENATED MODULE: ./app/components/bg-spotlight.tsx
+
+
+
+const Background = ({ children })=>{
+    let mouseX = 0;
+    let mouseY = 0;
+    let radialGradient = null;
+    (0,react_.useEffect)(()=>{
+        background();
+        window.addEventListener("resize", background);
+        setupGradientFollow();
+        gradientFollow();
+        radialGradient = document.querySelectorAll(".dot");
+    }, []);
+    const background = ()=>{
+        let nodes = [];
+        const background = document.getElementById("background");
+        for(let i = 0; i < window.innerWidth; i += 50){
+            for(let j = 0; j < window.innerHeight; j += 50){
+                let div = document.createElement("div");
+                div.style.width = "4px";
+                div.style.height = "4px";
+                div.style.borderRadius = "30px";
+                div.className = "dot";
+                div.style.position = "absolute";
+                div.style.left = `${i}px`;
+                div.style.top = `${j}px`;
+                nodes.push(div);
+            }
+        }
+        background?.append(...nodes);
+    };
+    const gradientFollow = ()=>{
+        const vw = window.innerWidth;
+        const maxDistance = 10 / 100 * vw; // Adjust the maximum distance for scaling and opacity changes
+        if (radialGradient) {
+            for (const item of radialGradient){
+                const x = item.offsetLeft + item.offsetWidth / 2;
+                const y = item.offsetTop + item.offsetHeight / 2;
+                const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
+                // Calculate a factor based on the distance
+                const factor = 1 - Math.min(distance / maxDistance, 1);
+                // Use linear interpolation (lerp) to smoothly adjust scale and opacity
+                const scale = 1 + factor; // Start with a scale of 1 and interpolate towards 2
+                const opacity = 0.18 + factor * 0.7; // Start with an opacity of 0.4 and interpolate towards 1
+                item.style.transform = `scale(${scale})`;
+                item.style.opacity = opacity.toString();
+            }
+        }
+        requestAnimationFrame(gradientFollow);
+    };
+    const setupGradientFollow = ()=>{
+        document.addEventListener("mousemove", (event)=>{
+            mouseX = event.pageX - window.scrollX;
+            mouseY = event.pageY - window.scrollY;
+        });
+    };
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                id: "background",
+                className: "fixed top-0 left-0"
+            }),
+            children
+        ]
+    });
+};
+/* harmony default export */ const bg_spotlight = (Background);
+
+;// CONCATENATED MODULE: ./app/pages/index.tsx
+/* __next_internal_client_entry_do_not_use__ default auto */ 
+
+
+
+
+function Landing() {
+    (0,react_.useEffect)(()=>{
+    //beginBlink();
+    }, []);
+    const beginBlink = ()=>{
+        const blinkElements = document.querySelectorAll(".blink");
+        Array.from(blinkElements).forEach((el)=>{
+            let isVisible = true;
+            setInterval(()=>{
+                isVisible = !isVisible;
+                if (el instanceof HTMLElement) {
+                    el.style.visibility = isVisible ? "visible" : "hidden";
+                }
+            }, 900);
+        });
+    };
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)((noop_head_default()), {
+                children: [
+                    /*#__PURE__*/ jsx_runtime_.jsx("title", {
+                        children: "Caleb Davey"
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx("link", {
+                        rel: "preconnect",
+                        href: "https://fonts.googleapis.com"
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx("link", {
+                        rel: "preconnect",
+                        href: "https://fonts.gstatic.com"
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx("link", {
+                        href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap",
+                        rel: "stylesheet"
+                    })
+                ]
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx(Scrollbar, {}),
+            /*#__PURE__*/ jsx_runtime_.jsx(bg_spotlight, {
+                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("main", {
+                    className: "bg-zinc-950 snap-y snap-mandatory overflow-y-auto overflow-x-hidden h-screen",
+                    children: [
+                        /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                            className: "snap-center h-screen w-screen overflow-hidden select-none flex justify-center items-center flex-col",
+                            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                className: "text-8xl font-light flex m-3",
+                                children: [
+                                    /*#__PURE__*/ jsx_runtime_.jsx("h1", {
+                                        className: "uppercase font-light",
+                                        children: "Hey"
+                                    }),
+                                    /*#__PURE__*/ jsx_runtime_.jsx("h1", {
+                                        className: "blink",
+                                        children: "."
+                                    }),
+                                    /*#__PURE__*/ jsx_runtime_.jsx("h1", {
+                                        children: "\xa0"
+                                    }),
+                                    /*#__PURE__*/ jsx_runtime_.jsx("h1", {
+                                        className: "uppercase font-light",
+                                        children: "I'm Caleb"
+                                    })
+                                ]
+                            })
+                        }),
+                        /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                            className: "snap-center h-screen w-screen overflow-hidden select-none flex justify-center items-center flex-col",
+                            children: /*#__PURE__*/ jsx_runtime_.jsx("h1", {
+                                className: "text-4xl font-light",
+                                children: "More coming soon"
+                            })
+                        })
+                    ]
+                })
+            })
+        ]
+    });
+}
+
 
 /***/ }),
 
@@ -322,36 +541,72 @@ function RootLayout({ children }) {
 
 /***/ }),
 
-/***/ 2838:
+/***/ 5417:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6786);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5124);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ page)
+});
+
+// EXTERNAL MODULE: external "next/dist/compiled/react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(6786);
+// EXTERNAL MODULE: ./node_modules/next/link.js
+var next_link = __webpack_require__(5124);
+var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
+// EXTERNAL MODULE: ./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js
+var module_proxy = __webpack_require__(1363);
+;// CONCATENATED MODULE: ./app/pages/index.tsx
+
+const proxy = (0,module_proxy.createProxy)(String.raw`C:\Users\caleb\Desktop\reactPortfolio\portfolio\app\pages\index.tsx`)
+
+// Accessing the __esModule property and exporting $$typeof are required here.
+// The __esModule getter forces the proxy target to create the default export
+// and the $$typeof value is for rendering logic to determine if the module
+// is a client boundary.
+const { __esModule, $$typeof } = proxy;
+const __default__ = proxy.default;
+
+
+/* harmony default export */ const pages = (__default__);
+;// CONCATENATED MODULE: ./app/page.tsx
+
 
 
 function Home() {
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_1___default()), {
+    return /*#__PURE__*/ jsx_runtime_.jsx("ul", {
+        children: /*#__PURE__*/ jsx_runtime_.jsx("li", {
+            children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
                 href: "/",
-                children: "Home"
+                children: /*#__PURE__*/ jsx_runtime_.jsx(pages, {})
             })
         })
     });
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
+/* harmony default export */ const page = (Home);
 
 
 /***/ }),
 
 /***/ 7272:
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ 9912:
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ 3982:
 /***/ (() => {
 
 
@@ -365,7 +620,7 @@ function Home() {
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [215], () => (__webpack_exec__(3192)));
+var __webpack_exports__ = __webpack_require__.X(0, [470], () => (__webpack_exec__(3192)));
 module.exports = __webpack_exports__;
 
 })();
